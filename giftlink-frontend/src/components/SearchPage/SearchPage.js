@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { urlConfig } from '../../config';
+import './SearchPage.css';
 
 function SearchPage() {
 
@@ -37,6 +38,7 @@ function SearchPage() {
 
     // Task 2. Fetch search results from the API based on user inputs.
     const handleSearch = async () => {
+
         // Constpruct the search URL based on user input
         const baseUrl = `${urlConfig.backendUrl}/api/search?`;
         const queryParams = new URLSearchParams({
@@ -68,7 +70,7 @@ function SearchPage() {
     return (
         <div className="container mt-5">
             <div className="row justify-content-center">
-                <div className="col-md-6">
+                <div className="col-12">
                     <div className="filter-section mb-3 p-3 border rounded">
                         <h5>Filters</h5>
                         <div className="d-flex flex-column">
@@ -92,7 +94,7 @@ function SearchPage() {
                             </select>
                         </div>
                         {/* Task 4: Implement an age range slider and display the selected value. */}
-                        <label htmlFor="ageRange">Less than {ageRange} years</label>
+                        <label htmlFor="ageRange" className='d-block'>Less than {ageRange} years</label>
                         <input
                             type="range"
                             className="form-control-range"
@@ -106,9 +108,9 @@ function SearchPage() {
                 </div>
                 <div className="mt-4">
                     {/* Task 7: Add text input field for search criteria*/}
-                    <input type="search" className="form-control" onChange={(e) => setSearchQuery(e.target.value)} />
+                    <input type="search" className="form-control mb-3" placeholder='Search for items...' onChange={(e) => setSearchQuery(e.target.value)} />
                     {/* Task 8: Implement search button with onClick event to trigger search:*/}
-                    <button type="button" onClick={handleSearch}>Search</button>
+                    <button type="button" className='btn btn-primary' onClick={handleSearch}>Search</button>
                 </div>
                 {/*Task 5: Display search results and handle empty results with a message. */}
                 <div className="search-results mt-4">
@@ -135,7 +137,6 @@ function SearchPage() {
                     )}
                 </div>
             </div>
-        </div>
         </div>
     );
 }

@@ -11,6 +11,8 @@
     /* Task 2 styling */
     /* Insert code under this */
     object-fit: cover;
+    height: 100%;
+    width: 100%;
 }
 
 /* Style for 'no image available' placeholder */

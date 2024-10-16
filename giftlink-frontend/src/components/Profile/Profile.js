@@ -75,9 +75,11 @@ const Profile = () => {
                 body: JSON.stringify(payload),
             });
 
+            
             if (response.ok) {
+                console.log('updated details', updatedDetails);
                 // Update the user details in session storage
-                setUserName(updatedDetails)
+                setUserName(updatedDetails.name);
                 sessionStorage.setItem("name", updatedDetails.name);
                 setUserDetails(updatedDetails);
                 setEditMode(false);

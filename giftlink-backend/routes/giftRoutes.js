@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 
         // Task 3: Fetch all gifts using the collection.find method. Chain with toArray method to convert to JSON array
         // const gifts = {{insert code here}}
-        const gifts =await collection.find().toArray();
+        const gifts = await collection.find().toArray();
 
         // Task 4: return the gifts using the res.json method
         res.json(gifts);
@@ -33,12 +33,12 @@ router.get('/:id', async (req, res) => {
         const db = await connectToDatabase();
 
         // Task 2: use the collection() method to retrieve the gift collection
-        const collection = db.collection(collectionName);
+        const collection = await db.collection(collectionName);
 
         const id = req.params.id;
 
         // Task 3: Find a specific gift by ID using the collection.fineOne method and store in constant called gift
-        const gift = collection.findOne({id: id});
+        const gift = await collection.findOne({id: id});
 
         if (!gift) {
             return res.status(404).send('Gift not found');
@@ -50,8 +50,6 @@ router.get('/:id', async (req, res) => {
         res.status(500).send('Error fetching gift');
     }
 });
-
-
 
 // Add a new gift
 router.post('/', async (req, res, next) => {

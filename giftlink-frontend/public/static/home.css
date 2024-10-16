@@ -35,3 +35,8 @@ h1, h2, .lead, .btn-primary {
     max-width: 800px;
     font-weight: bold;
 }
+
+.btn-primary {
+    border-radius: 30px;
+    padding: 10px 20px;
+}

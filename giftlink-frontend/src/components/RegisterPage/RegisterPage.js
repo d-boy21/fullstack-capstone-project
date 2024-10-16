@@ -22,7 +22,7 @@ function RegisterPage() {
         console.log("Register invoked")
 
             try {
-                const response = await fetch(`${urlConfig.backendUrl}/api/${productId}` {
+                const response = await fetch(`${urlConfig.backendUrl}/api/auth/register`, {
                     method: "POST",
                     headers: {
                         'content-type': 'application/json',
@@ -33,14 +33,15 @@ function RegisterPage() {
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();
+                console.log('data', data);
                 if (data.authtoken) {
                     sessionStorage.setItem('auth-token', data.authtoken);
-                    sessionStorage.setItem('namw', data.firstName);
+                    sessionStorage.setItem('name', firstName);
                     sessionStorage.setItem('email', data.email);
                     setIsLoggedIn(true);
-                    navigate('/app')
+                    navigate('/app');
                 } else if (data.error) {
-                    
+                    setShowerr(data.error);
                 }
                 
             } catch (error) {
