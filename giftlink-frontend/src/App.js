@@ -6,6 +6,7 @@ import MainPage from './components/MainPage/MainPage';
 import Navbar from './components/Navbar/Navbar';
 import DetailsPage from './components/DetailsPage/DetailsPage';
 import SearchPage from './components/SearchPage/SearchPage';
+import Profile from './components/Profile/Profile';
 
 function App() {
   const navigate = useNavigate();
@@ -16,8 +17,9 @@ function App() {
           {/* the final code will not pass the products to every page, but each page will call the server API */}
           <Route path="/" element={<MainPage />} />
           <Route path="/app" element={<MainPage />} />
-          <Route path="/app/product/:productId" element={<DetailsPage/>} />
-          <Route path="/app/search" element={<SearchPage/>} />
+          <Route path="/app/product/:productId" element={<DetailsPage />} />
+          <Route path="/app/search" element={<SearchPage />} />
+          <Route path="/app/profile" element={<Profile />} />
         </Routes>
         </>
   );
