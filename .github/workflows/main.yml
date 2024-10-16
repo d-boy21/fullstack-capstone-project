@@ -24,7 +24,7 @@ jobs:
         run: npm install jshint --global
 
       - name: Run JSHint
-        run: jshint --esversion=8 .
+        run: jshint --esversion=8 
 
       - name: Run Linter
         run: |
