@@ -1,10 +1,11 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import MainPage from './components/MainPage/MainPage';
 import Navbar from './components/Navbar/Navbar';
 import DetailsPage from './components/DetailsPage/DetailsPage';
+import SearchPage from './components/SearchPage/SearchPage';
 
 function App() {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/app" element={<MainPage />} />
           <Route path="/app/product/:productId" element={<DetailsPage/>} />
+          <Route path="/app/search" element={<SearchPage/>} />
         </Routes>
         </>
   );

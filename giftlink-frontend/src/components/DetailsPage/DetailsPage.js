@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './DetailsPage.css';
+import {urlConfig} from '../../config';
 
 function DetailsPage() {
     const navigate = useNavigate();
@@ -13,7 +14,7 @@ function DetailsPage() {
         const authenticationToken = sessionStorage.getItem('auth-token');
         if (!authenticationToken) {
 			// Task 1: Check for authentication and redirect
-            navigate('/app/login')
+            navigate('/app/login');
         }
 
 
@@ -37,7 +38,7 @@ function DetailsPage() {
         fetchGift();
 
 		// Task 3: Scroll to top on component mount
-		windows.scrollTo(0, 0);
+		window.scrollTo(0, 0);
 
     }, [productId]);
 
