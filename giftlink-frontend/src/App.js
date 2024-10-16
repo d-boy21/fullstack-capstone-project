@@ -7,7 +7,7 @@ import Navbar from './components/Navbar/Navbar';
 import DetailsPage from './components/DetailsPage/DetailsPage';
 
 function App() {
-
+  const navigate = useNavigate();
   return (
     <>
         <Navbar/>
@@ -20,5 +20,4 @@ function App() {
         </>
   );
 }
-
 export default App;
