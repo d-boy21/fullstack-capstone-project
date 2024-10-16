@@ -1,18 +1,51 @@
 import React, { useState } from 'react';
+import {urlConfig} from '../../config';
+import { useAppContext } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 import './RegisterPage.css';
 
 function RegisterPage() {
+
+    const navigate = useNavigate();
+    const { setIsLoggedIn } = useAppContext();
 
     //insert code here to create useState hook variables for firstName, lastName, email, password
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showerr, setShowerr] = useState('');
 
     // insert code here to create handleRegister function and include console.log
     const handleRegister = async () => {
         console.log("Register invoked")
+
+            try {
+                const response = await fetch(`${urlConfig.backendUrl}/api/${productId}` {
+                    method: "POST",
+                    headers: {
+                        'content-type': 'application/json',
+                    },
+                    body: JSON.stringify({firstName, lastName, email, password})
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                if (data.authtoken) {
+                    sessionStorage.setItem('auth-token', data.authtoken);
+                    sessionStorage.setItem('namw', data.firstName);
+                    sessionStorage.setItem('email', data.email);
+                    setIsLoggedIn(true);
+                    navigate('/app')
+                } else if (data.error) {
+                    
+                }
+                
+            } catch (error) {
+                setShowerr(error.message);
+            }
     }
 
     return (
@@ -20,6 +53,7 @@ function RegisterPage() {
             <div className="row justify-content-center">
                 <div className="col-md-6 col-lg-4">
                     <div className="register-card p-4 border rounded">
+                        <div className="text-danger">{showerr}</div>
                         <h2 className="text-center mb-4 font-weight-bold">Register</h2>
                         <div className="form-group mb-4">
                             <label htmlFor="firstName" className="form label">First Name</label>
